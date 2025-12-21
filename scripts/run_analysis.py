@@ -1,43 +1,32 @@
 import sys
 from pathlib import Path
 
-# 1. تحديد جذر المشروع (Project Root)
-#parents[0] هو مجلد scripts، و parents[1] هو المجلد الرئيسي DATA-WORK
-ROOT = Path(__file__).resolve().parents[1]
+# Setup Path
+ROOT_DIR = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT_DIR / "src"))
 
-# 2. إضافة مجلد src إلى sys.path لتمكين الاستيراد من data_bootcamp
-SRC_PATH = str(ROOT / "src")
-if SRC_PATH not in sys.path:
-    sys.path.append(SRC_PATH)
-
-# 3. الآن نقوم باستيراد الأدوات التي برمجناها
-try:
-    from data_bootcamp.config import PROJ_PATHS
-    from data_bootcamp.io import read_orders_csv, write_parquet
-    print("✅ Successfully linked to data_bootcamp package.")
-except ImportError as e:
-    print(f"❌ Import Error: {e}")
-    sys.exit(1)
+from data_bootcamp.config import PROJ_PATHS
+from data_bootcamp.io import read_users_csv, write_parquet
 
 def main():
-    print(f"🚀 Running analysis from: {ROOT}")
-    
-    # مثال: قراءة ملف من مجلد raw
-    # افترضنا وجود ملف اسمه orders.csv
-    input_path = PROJ_PATHS.raw / "orders.csv"
-    
-    if input_path.exists():
-        print(f"📦 Loading data from: {input_path}")
-        df = read_orders_csv(input_path)
+    # 1. Define paths using PROJ_PATHS
+    input_file = PROJ_PATHS.raw / "users.csv"
+    output_file = PROJ_PATHS.processed / "users_processed.parquet"
+
+    try:
+        # 2. Ingest
+        users_df = read_users_csv(input_file)
         
-        # عرض أول 5 أسطر للتأكد
-        print("📊 Data Preview:")
-        print(df.head())
+        # 3. Simple Process (Example: Drop duplicates)
+        users_df = users_df.drop_duplicates()
         
-        # هنا يمكنك إضافة كود التحليل الخاص بك...
-    else:
-        print(f"⚠️ Warning: No file found at {input_path}")
-        print("💡 Please place your orders.csv file in the data/raw folder.")
+        # 4. Save
+        write_parquet(users_df, output_file)
+        
+        print("\n🚀 Pipeline finished successfully!")
+
+    except Exception as e:
+        print(f"❌ Error: {e}")
 
 if __name__ == "__main__":
     main()
