@@ -38,17 +38,16 @@ def parse_datetime(df: pd.DataFrame, col: str, *, utc: bool = True) -> pd.DataFr
     return df.assign(**{col: dt})
 
 def add_time_parts(df: pd.DataFrame, ts_col: str) -> pd.DataFrame:
-    """
-    Extracts useful features from a timestamp column:
-    Date, Year, Month (string), Day of Week, and Hour.
-    """
-    ts = df[ts_col]
+    """Add common time grouping keys (month, day-of-week, hour, etc.)."""
+   
+    ts = pd.to_datetime(df[ts_col]) 
+    
     return df.assign(
-        date=ts.dt.date,
-        year=ts.dt.year,
-        month=ts.dt.to_period("M").astype("string"),
-        dow=ts.dt.day_name(),
-        hour=ts.dt.hour,
+        date=ts.dt.date,          
+        year=ts.dt.year,          
+        month=ts.dt.to_period("M").astype("string"), 
+        dow=ts.dt.day_name(),    
+        hour=ts.dt.hour,          
     )
 
 # --- 3. Outlier Detection & Handling ---

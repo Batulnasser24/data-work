@@ -1,12 +1,16 @@
 {
-  "timestamp_utc": "2025-12-24T20:04:03.725215+00:00",
-  "pipeline_stage": "day1_load",
-  "counts": {
-    "orders_rows": 5250,
-    "users_rows": 1000
-  },
-  "output_files": {
-    "orders": "data\\processed\\orders.parquet",
-    "users": "data\\processed\\users.parquet"
-  }
+  "execution_time": "2025-12-25T02:08:40.652099+00:00",
+  "status": "success",
+  "rows_processed": 5250,
+  "columns": [
+    "order_id",
+    "user_id",
+    "amount",
+    "quantity",
+    "created_at",
+    "status",
+    "status_clean",
+    "amount__isna",
+    "quantity__isna"
+  ]
 }
