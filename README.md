@@ -9,10 +9,28 @@ This project implements a professional **ETL Pipeline** (Extract, Transform, Loa
 - **Libraries:** Pandas, Plotly, Pandera, PyArrow.
 - **Environment:** Jupyter Notebook for EDA.
 
-## 📈 Key Findings (from EDA)
-- **Top Country:** [  ] with $[ ] total revenue.
-- **Data Quality:** Achieved **100% join coverage** between orders and users.
-- **Outliers:** Handled price outliers using **Winsorization** (1st/99th percentiles).
+## 📊 Visual Analysis & Key Insights
+
+### 1️⃣ Revenue by Country
+![Revenue Chart](plots/revenue_by_country.png)
+* **The Insight:** Market performance is balanced across the GCC. The **UAE (AE)** leads with the highest revenue (over **$320k**), followed by **Kuwait (KW)** and **Qatar (QA)**.
+* **The Action:** Focus regional marketing strategies on the UAE to capitalize on its slight competitive edge.
+
+### 2️⃣ Monthly Revenue Trends
+![Revenue Over Time](plots/revenue_over_time.png)
+* **The Insight:** Revenue peaked in **January ($106k)** but faced a sharp decline in **December (~$64k)**.
+* **The Action:** Investigate the Q4 slump to determine if it's due to seasonal churn or supply chain issues.
+
+### 3️⃣ Order Amount Distribution
+![Order Distribution](plots/order_amount_distribution.png)
+* **The Insight:** After **Winsorization**, order amounts show consistent volume between **$300 and $430**.
+* **The Action:** Target high-value segments with "Premium Bundles" to increase Average Order Value (AOV).
+
+## 🔍 Technical Findings & Data Quality (Caveats)
+- **Data Integrity:** Achieved a **99.8% join success rate** between orders and users.
+- **Cleanliness:** Standardized inconsistent status labels (e.g., "paid" vs "PAID").
+- **Exclusions:** Dropped **473 records** (<10%) due to missing critical fields to ensure analysis accuracy.
+- **Handling Outliers:** Applied **Winsorization** (1st/99th percentiles) to prevent price extremes from skewing results.
 
 ## 📂 Project Structure
 - `src/`: Core logic (Transforms, Joins, Quality checks).
