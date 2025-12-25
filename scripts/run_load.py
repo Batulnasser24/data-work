@@ -14,6 +14,7 @@ sys.path.append(str(ROOT / "src"))
 from bootcamp_data.config import make_paths
 from bootcamp_data.io import read_orders_csv, read_users_csv, write_parquet
 
+
 # 2. Logging Setup
 # Standard formatting for professional debugging and monitoring
 logging.basicConfig(
