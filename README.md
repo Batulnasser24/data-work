@@ -44,3 +44,7 @@ This project implements a professional **ETL Pipeline** (Extract, Transform, Loa
 3. Execute the pipeline:
    ```bash
    uv run scripts/run_etl.py
+## 📓 Exploratory Analysis (JupyterLab)
+To explore the data and visualizations interactively, launch JupyterLab:
+```bash
+uv run jupyter lab
