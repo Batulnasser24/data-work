@@ -36,7 +36,7 @@ This project implements a professional **ETL Pipeline** (Extract, Transform, Loa
 - `src/`: Core logic (Transforms, Joins, Quality checks).
 - `scripts/`: Production-ready ETL runner (`run_etl.py`).
 - `notebooks/`: Exploratory Data Analysis (EDA) and Visualizations.
-- `data/`: (Not pushed to Git) Raw and Processed data.
+- `data/`: Raw and Processed data.
 
 ## ⚙️ How to Run
 1. Install `uv`.
